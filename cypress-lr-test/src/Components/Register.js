@@ -1,7 +1,7 @@
 
 import styled from "styled-components"
-import { GoogleAuthProvider, getAuth, signInWithPopup, signInWithEmailAndPassword, createUserWithEmailAndPassword, sendPasswordResetEmail, signOut } from "firebase/auth";
-import { getFirestore, query, getDocs, collection, where, addDoc } from "firebase/firestore";
+import { GoogleAuthProvider, getAuth, signInWithPopup, createUserWithEmailAndPassword} from "firebase/auth";
+import { query, getDocs, collection, where, addDoc } from "firebase/firestore";
 import { app, db } from "../firebase/firebase";
 import { useState } from "react";
 import { useNavigate } from "react-router";
@@ -114,7 +114,9 @@ function Register () {
                     email: user.email,
                 });
             }
-            toast("user created & logging in")
+            toast("user created & logging in");
+            localStorage.setItem("logIn", user.uid);
+            navigate("/");
         } catch (err) {
             console.error(err);
         }
@@ -132,6 +134,8 @@ function Register () {
             password
           });
           toast("user created");
+          localStorage.setItem("logIn", user.uid);
+          navigate("/");
         } catch (err) {
           console.error(err);
           alert(err.message);

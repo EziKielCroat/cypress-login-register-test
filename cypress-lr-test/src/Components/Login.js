@@ -1,7 +1,7 @@
 
 import styled from "styled-components"
-import { GoogleAuthProvider, getAuth, signInWithPopup, signInWithEmailAndPassword, createUserWithEmailAndPassword, sendPasswordResetEmail, signOut } from "firebase/auth";
-import { getFirestore, query, getDocs, collection, where, addDoc } from "firebase/firestore";
+import { GoogleAuthProvider, getAuth, signInWithPopup, signInWithEmailAndPassword } from "firebase/auth";
+import { query, getDocs, collection, where, addDoc } from "firebase/firestore";
 import { app, db } from "../firebase/firebase";
 import { useState } from "react";
 import { useNavigate } from "react-router";
@@ -112,7 +112,9 @@ function Login () {
                     email: user.email,
                 });
             }
-            toast("user logged in")
+            toast("user logged in");
+            localStorage.setItem("logIn", user.uid);
+            navigate("/");
         } catch (err) {
             console.error(err);
         }
@@ -121,7 +123,9 @@ function Login () {
     const logInWithEmailAndPassword = async (email, password) => {
         try {
           await signInWithEmailAndPassword(auth, email, password);
-          toast("user logged in")
+          toast("user logged in");
+          localStorage.setItem("logIn", "email");
+          navigate("/");
         } catch (err) {
           console.error(err);
           alert(err.message);
