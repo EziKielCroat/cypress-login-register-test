@@ -41,5 +41,9 @@
       "last 1 firefox version",
       "last 1 safari version"
     ]
+  },
+  "devDependencies": {
+    "cypress": "^12.17.1",
+    "cypress-localstorage-commands": "^2.2.3"
   }
 }

@@ -25,7 +25,7 @@ function NotAuthorized () {
     }, [navigate]);
 
     return (
-        <Message>You are not a authorized user, you will be redirected to the login page.</Message>
+        <Message className='notauthorized'>You are not a authorized user, you will be redirected to the login page.</Message>
     )
 }
 
