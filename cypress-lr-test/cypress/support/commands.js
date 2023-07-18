@@ -27,18 +27,14 @@
 import 'cypress-localstorage-commands'
 
 Cypress.Commands.add('checkItem', (itemID) => {
-    const localStorage = cy.getAllLocalStorage().specWindow.localStorage
-
-    if(localStorage.length === 0) {
-        return false
-    } else {
-        if(itemID in localStorage) {
-            return true
-        } else {
-            return false
-        }
-    }
-})
+    return cy.getAllLocalStorage().then(localStorage => {
+      if (localStorage.length === 0) {
+        return false;
+      } else {
+        return itemID in localStorage;
+      }
+    });
+  });
 
 Cypress.Commands.add('addItem', (itemID, itemValue) => {
     if(itemID !== "" && itemValue !== "") {
@@ -52,4 +48,20 @@ Cypress.Commands.add('removeItem', (itemID) => {
     } else {
         new Error("Invalid ItemID")
     }
+})
+
+Cypress.Commands.add('setItem', (itemID, itemValue) => {
+    if(itemID !== "" && itemValue !== "") {
+        cy.setLocalStorage(itemID, itemValue)
+    } else {
+        new Error("Invalid ItemID or itemValue")
+    }
+})
+
+Cypress.Commands.add('clearLocalstorage', (snapshotName) => {
+    if(typeof snapshotName === 'undefined') {
+        cy.clearLocalStorageSnapshot()
+        return;
+    }
+    cy.clearLocalStorageSnapshot(snapshotName)
 })

@@ -92,11 +92,11 @@ transform: translate(-50%, -50%);
 `
 
 function Login () {
-    const navigate = useNavigate();
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
     const auth = getAuth(app);
     const googleProvider = new GoogleAuthProvider();
+    const navigate = useNavigate();
 
     const signInWithGoogle = async () => {
         try {
