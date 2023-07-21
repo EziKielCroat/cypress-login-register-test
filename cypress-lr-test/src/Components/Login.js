@@ -117,6 +117,7 @@ function Login () {
             navigate("/");
         } catch (err) {
             console.error(err);
+            toast(err);
         }
     };
 
@@ -128,16 +129,16 @@ function Login () {
           navigate("/");
         } catch (err) {
           console.error(err);
-          alert(err.message);
+          toast(err);
         }
       };
 
     return(
         <>
             <Title>Login</Title>
-            <EmailInput placeholder="Type your email here" value={email} onChange={(e) => setEmail(e.target.value)} type="email "></EmailInput>
-            <PasswordInput placeholder="Type your password here" type="password" value={password} onChange={(e) => {setPassword(e.target.value)}}></PasswordInput>
-            <LogInWithEmailButton onClick={() => {logInWithEmailAndPassword(email, password)}}>Log in with email</LogInWithEmailButton>
+            <EmailInput placeholder="Type your email here" value={email} onChange={(e) => setEmail(e.target.value)} type="email" className="email"></EmailInput>
+            <PasswordInput placeholder="Type your password here" type="password" value={password} onChange={(e) => {setPassword(e.target.value)}} className="password"></PasswordInput>
+            <LogInWithEmailButton onClick={() => {logInWithEmailAndPassword(email, password)}} className="logInWithEmail">Log in with email</LogInWithEmailButton>
             <Button  onClick={() => {signInWithGoogle()}}>Log in with google</Button>
             <DontHaveanAccount onClick={()=>{navigate("/register")}}>Don't have an Account? Register now!</DontHaveanAccount>
             <ToastContainer />

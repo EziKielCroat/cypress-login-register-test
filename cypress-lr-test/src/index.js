@@ -15,7 +15,7 @@ const CheckIfLoggedIn = ({children}) => {
   const loggedIn = !!localStorage.getItem("logIn");
 
   if(loggedIn) {
-    return {children}
+    return children;
   } else {
     return <NotAuthorized />
   }
