@@ -1,32 +1,31 @@
-import React from 'react';
-import ReactDOM from 'react-dom/client';
-import './index.css';
-import App from './App';
-import NotAuthorized from './Components/NotAuthorized';
-import Login from './Components/Login';
-import Register from './Components/Register';
-import reportWebVitals from './reportWebVitals';
-import {
-  createBrowserRouter,
-  RouterProvider,
-} from "react-router-dom";
+import React from "react";
+import ReactDOM from "react-dom/client";
+import "./index.css";
+import App from "./App";
+import NotAuthorized from "./Components/NotAuthorized";
+import Login from "./Components/Login";
+import Register from "./Components/Register";
+import reportWebVitals from "./reportWebVitals";
+import { createBrowserRouter, RouterProvider } from "react-router-dom";
 
-const CheckIfLoggedIn = ({children}) => {
+const CheckIfLoggedIn = ({ children }) => {
   const loggedIn = !!localStorage.getItem("logIn");
 
-  if(loggedIn) {
+  if (loggedIn) {
     return children;
   } else {
-    return <NotAuthorized />
+    return <NotAuthorized />;
   }
-}
+};
 
 const router = createBrowserRouter([
   {
     path: "/",
     element: (
-      <CheckIfLoggedIn><App></App></CheckIfLoggedIn>
-    ), 
+      <CheckIfLoggedIn>
+        <App></App>
+      </CheckIfLoggedIn>
+    ),
   },
   {
     path: "login",
@@ -34,14 +33,14 @@ const router = createBrowserRouter([
   },
   {
     path: "register",
-    element: <Register />
-  }
+    element: <Register />,
+  },
 ]);
 
-const root = ReactDOM.createRoot(document.getElementById('root'));
+const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
   <React.StrictMode>
-      <RouterProvider router={router} />
+    <RouterProvider router={router} />
   </React.StrictMode>
 );
 
