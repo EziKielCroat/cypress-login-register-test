@@ -126,10 +126,16 @@ function Login() {
 
   const logInWithEmailAndPassword = async (email, password) => {
     try {
-      await signInWithEmailAndPassword(auth, email, password);
+      await signInWithEmailAndPassword(auth, email, password)
+      // .then((userCreds) => {
+      //   const userCredentials = userCreds.user;
+      //   alert(userCredentials);
+      // }).catch((error) => {
+      //   console.log(error.message);
+      // })
       toast("user logged in");
       localStorage.setItem("logIn", "email");
-      navigate("/");
+      navigate("/"); 
     } catch (err) {
       console.error(err);
       toast(err);
